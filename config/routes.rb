@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get "/galleries/:id" => "galleries#show"
 
   get "/galleries/:id/edit" => "galleries#edit"
-
+  patch "/galleries/:id" => "galleries#update"
 end
