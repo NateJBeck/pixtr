@@ -1,4 +1,17 @@
-<h1> Pixtr says hi </h1>
+<h1> Pixtr! </h1>
 
 <a href="/galleries/new">Make a New Gallery</a>
 
+<ul>
+  <% @galleries.each do |gallery| %>
+    <li>
+      <a href="/galleries/<%= gallery.id %>">
+        <%= gallery.name %>
+      </a> 
+      - 
+      <%= gallery.description %>
+
+      <a href="/galleries/<%= gallery.id %>/edit">Edit</a>
+    </li>
+  <% end %>
+</ul>

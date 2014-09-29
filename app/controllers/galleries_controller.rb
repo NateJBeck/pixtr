@@ -4,12 +4,13 @@
 
 class GalleriesController < ApplicationController #GalleriesController inherits from ApplicationController
   def index 
-    render :index      #can also leave it out, rails will render it automatically
+    @galleries = Gallery.all
+    #render :index      #can also leave it out, rails will render it automatically
   end
 
   def new
     @gallery = Gallery.new  #@gallery is used in a/v/g/new.html.erb
-    render :new
+    #render :new
   end
 
   def create
@@ -19,4 +20,15 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
     )
     redirect_to "/"
   end
+
+  def show
+    @galleries = Gallery.find(params[:id]) 
+    #render :show
+  end
+
+  def edit
+    @gallery = Gallery.find(params[:id])
+    #render :edit
+  end
+
 end
