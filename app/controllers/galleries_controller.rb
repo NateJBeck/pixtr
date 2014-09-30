@@ -32,7 +32,7 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
   end
 
   def show
-    @galleries = Gallery.find(params[:id]) 
+    @gallery = Gallery.find(params[:id]) 
     #render :show
   end
 

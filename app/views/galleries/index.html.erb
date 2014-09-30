@@ -1,6 +1,6 @@
 <h1> Pixtr! </h1>
 
-<a href="/galleries/new">Make a New Gallery</a>
+<%= link_to "Make a New Gallery", new_gallery_path %> 
 
 <ul>
   <% @galleries.each do |gallery| %>

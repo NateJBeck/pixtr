@@ -1,1 +1,6 @@
-<h2> This is a page for <%= @galleries.name %> </h2>
+<h2> This is a page for <%= @gallery.name %> </h2>
+
+<% @gallery.images.each do |image| %> <%#no equals sign for .each %>
+  <%= image_tag image.url %>
+  <%= link_to image.name, gallery_image_path(@gallery, image) %>
+<% end %>
