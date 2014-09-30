@@ -15,9 +15,12 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
 
   def create
     # use ls <object> in PRY to find methods
-    # STRONG PARAMS from gallery_params needed to avoid mass assignment hack
-    Gallery.create(gallery_params) 
-
+    # STRONG PARAMS from gallery_para
+    # ms needed to avoid mass assignment hack
+    
+    gallery = Gallery.create(gallery_params) 
+    redirect_to gallery   #makes it gallery_path(gallery)
+    
   #  DONT USE THE FOLLOWING:  
   #  Gallery.create(
   #    name: params[:gallery][:name],
@@ -25,7 +28,7 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
   #  )
    
    #binding.pry -- using PRY gem to pause the actions here so we can inspect
-   redirect_to "/"
+   #redirect_to "/"
   end
 
   def show
