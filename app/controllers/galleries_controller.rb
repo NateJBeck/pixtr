@@ -14,11 +14,18 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
   end
 
   def create
-    Gallery.create(
-      name: params[:gallery][:name],
-      description: params[:gallery][:description]
-    )
-    redirect_to "/"
+    # use ls <object> in PRY to find methods
+    # STRONG PARAMS from gallery_params needed to avoid mass assignment hack
+    Gallery.create(gallery_params) 
+
+  #  DONT USE THE FOLLOWING:  
+  #  Gallery.create(
+  #    name: params[:gallery][:name],
+  #    description: params[:gallery][:description]
+  #  )
+   
+   #binding.pry -- using PRY gem to pause the actions here so we can inspect
+   redirect_to "/"
   end
 
   def show
@@ -33,18 +40,24 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
 
   def update
     gallery = Gallery.find(params[:id])
-    gallery.update(
-      name: params[:gallery][:name],
-      description: params[:gallery][:description]
-    )
+    gallery.update(gallery_params)
     redirect_to "/"
   end
+
+  #BECAUSE PAGE DOES SOMETHING, REDIRECT SOMEWHERE ELSE TO AVOID REFRESH
+  #PROBLEMS
 
   def destroy
     gallery = Gallery.find(params[:id])
     gallery.destroy
 
     redirect_to "/"
+  end
+  
+  private
+
+  def gallery_params
+    params.require(:gallery).permit(:name, :description)
   end
 
 end
