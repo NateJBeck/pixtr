@@ -18,8 +18,14 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
     # STRONG PARAMS from gallery_para
     # ms needed to avoid mass assignment hack
     
-    gallery = Gallery.create(gallery_params) 
-    redirect_to gallery   #makes it gallery_path(gallery)
+    @gallery = Gallery.new(gallery_params) 
+    
+    if @gallery.save
+      redirect_to gallery_path(@gallery)
+    else
+      #redirect_to new_gallery_path
+      render :new
+    end
     
   #  DONT USE THE FOLLOWING:  
   #  Gallery.create(
@@ -42,9 +48,12 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
   end
 
   def update
-    gallery = Gallery.find(params[:id])
-    gallery.update(gallery_params)
-    redirect_to "/"
+    @gallery = Gallery.find(params[:id])
+    if @gallery.update(gallery_params)
+      redirect_to gallery_path(@gallery)
+    else 
+      render :edit
+    end
   end
 
   #BECAUSE PAGE DOES SOMETHING, REDIRECT SOMEWHERE ELSE TO AVOID REFRESH
