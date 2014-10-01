@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "galleries#index"
   resources :galleries do
-    resources :images, only: [:show, :new, :create, :edit, :update]
+    resources :images, only: [:show, :new, :create, :edit, :update, :destroy]
   end
 
   # get "/" => "galleries#index"  #when the user goes to /, run galleries#index
