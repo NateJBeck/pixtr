@@ -10,7 +10,7 @@
   <div> <%= link_to image.name, gallery_image_path(@gallery, image) %> </div>
         <!-- this is where the DELETE will go -->
         
-        <%= form_for image, method: :delete do |form| %>
+        <%= form_for image,  method: :delete do |form| %>
           <%= form.submit "Delete Image" %>
         <% end %>
        
