@@ -9,20 +9,27 @@ class ImagesController < ApplicationController
     @image = @gallery.images.new
   end
 
-  #def create
+  def create
+    gallery = Gallery.find(params[:gallery_id])
+    gallery.images.create(image_params)
+    redirect_to gallery
+  end
+
+  #def edit
+  #  @gallery = Gallery.find(params[:gallery_id])
+  #  @image = @gallery.images.find(params[:id])
+  #end
+
+  #def update
   #  gallery = Gallery.find(params[:gallery_id])
-  #  image = @gallery.images.create(gallery, image_params)
-  #  redirect_to 
+  #  gallery.images.update(gallery, image_params)
+  #  redirect_to gallery
   #end
 
-  #private
-  #
-  #def gallery_params
-  #  params.require(:gallery).permit(:name, :description)
-  #end
-
-  #def image_params
-  #  params.require(:image).permit(:name, :url)
-  #end
+  private
+  
+  def image_params
+    params.require(:image).permit(:name, :url)
+  end
 
 end

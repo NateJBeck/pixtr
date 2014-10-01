@@ -1,0 +1,17 @@
+<p> Gonna edit this image: </p>
+<%= image_tag @image.url %>
+
+<%= form_for [@gallery, @image] do |form| %>
+<div>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+</div>
+
+<div>
+  <%= form.label :url %>
+  <%= form.text_field :url %>
+</div>
+
+<%= form.submit "Edit Image" %>
+<% end %>
+

@@ -2,7 +2,13 @@
 
 <%= link_to "Add an Image", new_gallery_image_path(@gallery) %>
 
+<p><%= @gallery.description %></p>
+
+<ul>
 <% @gallery.images.each do |image| %> <%#no equals sign for .each %>
+  <li>
   <%= image_tag image.url %>
   <%= link_to image.name, gallery_image_path(@gallery, image) %>
+  </li>
 <% end %>
+</ul>
