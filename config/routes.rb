@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root "galleries#index"
   resources :galleries do
-    resources :images, only: [:show]
+    resources :images, only: [:show, :new, :create]
   end
+
   # get "/" => "galleries#index"  #when the user goes to /, run galleries#index
   #                               #part before # is name of Controller, after # is name of method after Controller
   # get "/galleries/new" => "galleries#new"
