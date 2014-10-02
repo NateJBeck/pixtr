@@ -11,4 +11,5 @@ class AssoicateGalleriesToUsers < ActiveRecord::Migration
   def down
     remove_column :galleries, :user_id
   end
+
 end

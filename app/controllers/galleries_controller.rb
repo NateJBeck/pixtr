@@ -3,13 +3,15 @@
 #naming is important
 
 class GalleriesController < ApplicationController #GalleriesController inherits from ApplicationController
+  
   def index 
-    @galleries = Gallery.all
+    @galleries = current_user.galleries.all
     #render :index      #can also leave it out, rails will render it automatically
+    
   end
 
   def new
-    @gallery = Gallery.new  #@gallery is used in a/v/g/new.html.erb
+    @gallery = current_user.galleries.new  #@gallery is used in a/v/g/new.html.erb
     #render :new
   end
 
@@ -18,7 +20,7 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
     # STRONG PARAMS from gallery_para
     # ms needed to avoid mass assignment hack
     
-    @gallery = Gallery.new(gallery_params) 
+    @gallery = current_user.galleries.new(gallery_params) 
     
     if @gallery.save
       redirect_to gallery_path(@gallery)
@@ -38,17 +40,17 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
   end
 
   def show
-    @gallery = Gallery.find(params[:id]) 
+    @gallery = load_gallery_from_url 
     #render :show
   end
 
   def edit
-    @gallery = Gallery.find(params[:id])
+    @gallery = load_gallery_from_url
     #render :edit   DONE BY DEFAULT
   end
 
   def update
-    @gallery = Gallery.find(params[:id])
+    @gallery = load_gallery_from_url
     if @gallery.update(gallery_params)
       redirect_to gallery_path(@gallery)
     else 
@@ -60,7 +62,7 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
   #PROBLEMS
 
   def destroy
-    gallery = Gallery.find(params[:id])
+    gallery = load_gallery_from_url
     gallery.destroy
 
     redirect_to "/"
@@ -72,4 +74,8 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
     params.require(:gallery).permit(:name, :description)
   end
 
+  def load_gallery_from_url
+    current_user.galleries.find(params[:id])
+  end
 end
+
