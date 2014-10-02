@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'monban'
 gem 'monban-generators'
+gem 'rails_12factor', group: :production
 
 gem 'pry', group: :development
 
