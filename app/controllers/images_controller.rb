@@ -41,7 +41,7 @@ class ImagesController < ApplicationController
     @image = @gallery.images.find(params[:id])
     @image.destroy
 
-    redirect_to gallery
+    redirect_to @gallery
   end
 
   private

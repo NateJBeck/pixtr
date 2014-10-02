@@ -10,7 +10,10 @@
   <div> <%= link_to image.name, gallery_image_path(@gallery, image) %> </div>
         <!-- this is where the DELETE will go -->
         <div> <%= image_tag image.url %> </div>
-        
+
+        <%= form_for [@gallery, image], method: :delete do |form| %>
+          <%= form.submit "Delete" %>
+        <% end %>
   </div>
   </li>
 <% end %>
