@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :images#, only: [:show, :new, :create, :edit, :update, :delete]
   end
 
+  resources :users, only: [:new, :create]
+
   # get "/" => "galleries#index"  #when the user goes to /, run galleries#index
   #                               #part before # is name of Controller, after # is name of method after Controller
   # get "/galleries/new" => "galleries#new"
