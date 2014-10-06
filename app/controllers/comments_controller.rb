@@ -2,15 +2,16 @@ class CommentsController < ApplicationController
   def create
     @image = Image.find(params[:image_id])
     
-    @comment = Comment.new(comment_params)
-    @comment.image_id = params[:image_id]
-    @comments = @image.comments
+    @comment = @image.comments.new(comment_params)
+   # @comment.image_id = params[:image_id]
 
     @gallery = @image.gallery
     
     if @comment.save
        redirect_to gallery_image_path(@gallery, @image)
     else
+      @comments = @image.comments.all 
+      #grab all the things from within the database
       render "images/show" # cannot use path helpers
     end
 
