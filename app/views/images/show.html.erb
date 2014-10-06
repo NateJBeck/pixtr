@@ -10,10 +10,7 @@
 
   <ul>
     <% @comments.each do |comment| %>
-      <li><strong><%= comment.user.email %></strong> 
-       says <em>"<%= comment.body %>"</em>
-       (<%= time_ago_in_words(comment.created_at) %> ago)
-      </li>
+      <%= render "comments/comment", comment: comment %>
     <% end %>
   </ul>
 
