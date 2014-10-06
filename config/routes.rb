@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   root "galleries#index"
+ 
+  resources :users, only: [:new, :create]
+  
   resources :galleries do
-    resources :images#, only: [:show, :new, :create, :edit, :update, :delete]
+    resources :images     #, only: [:show, :new, :create, :edit, :update, :delete]
   end
 
-  resources :users, only: [:new, :create]
-
+  resources :images, only: [] do          #comments nested inside image
+    resources :comments, only: [:create]  #we now need an image_id param
+  end
+end
   # get "/" => "galleries#index"  #when the user goes to /, run galleries#index
   #                               #part before # is name of Controller, after # is name of method after Controller
   # get "/galleries/new" => "galleries#new"
@@ -16,5 +21,3 @@ Rails.application.routes.draw do
   # get "/galleries/:id/edit" => "galleries#edit"
   # patch "/galleries/:id" => "galleries#update"
   # delete "/galleries/:id" => "galleries#destroy"
-
-end
