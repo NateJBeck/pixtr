@@ -5,6 +5,7 @@
 class GalleriesController < ApplicationController #GalleriesController inherits from ApplicationController
   
   def index 
+    #@galleries = Gallery.all
     @galleries = current_user.galleries.all
     #render :index      #can also leave it out, rails will render it automatically
     

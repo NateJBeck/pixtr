@@ -10,8 +10,8 @@ class CommentsController < ApplicationController
     if @comment.save
        redirect_to gallery_image_path(@gallery, @image)
     else
-      @comments = @image.comments.all 
-      #grab all the things from within the database
+      @comments = @image.comments.recent
+      #grab all the things from within the database, using self.recent in model
       render "images/show" # cannot use path helpers
     end
 
