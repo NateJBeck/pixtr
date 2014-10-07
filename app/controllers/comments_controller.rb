@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   def create
     @image = Image.find(params[:image_id])
-    
     @comment = @image.comments.new(comment_params)
    # @comment.image_id = params[:image_id]
 
@@ -22,7 +21,7 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).
       permit(:body).
-      merge(user_id: current_user.id)
+      merge(user_id: current_user.id) #associates the comment to the user that is currently signed in, maing the comment
   end
 
 end

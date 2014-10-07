@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :images, only: [] do          #comments nested inside image
-    resources :comments, only: [:create]  #we now need an image_id param
+    resources :comments, only: [:create]  #we now have an image_id param to be able to call for every comment
   end
 end
   # get "/" => "galleries#index"  #when the user goes to /, run galleries#index

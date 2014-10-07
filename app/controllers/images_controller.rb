@@ -12,7 +12,7 @@ class ImagesController < ApplicationController
   end
 
   def create
-    @gallery = load_gallery_from_url
+    @gallery = load_gallery_from_current_user
     @image = @gallery.images.new(image_params)
 
     if @image.save
