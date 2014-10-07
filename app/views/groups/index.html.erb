@@ -1,0 +1,12 @@
+<h2>Groups Page</h2>
+
+<ul>
+  <% @group.each do |group| %>
+    <li>
+      <span id="group-list">
+        <strong><%= group.name %></strong> 
+              - <%= group.description %>
+      </span>
+    </li>
+  <% end %>
+</ul>

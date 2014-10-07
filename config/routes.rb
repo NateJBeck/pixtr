@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :images, only: [] do          #comments nested inside image
     resources :comments, only: [:create]  #we now have an image_id param to be able to call for every comment
   end
+
+  resources :groups, only: [:index]
 end
   # get "/" => "galleries#index"  #when the user goes to /, run galleries#index
   #                               #part before # is name of Controller, after # is name of method after Controller
