@@ -2,12 +2,14 @@
 <%= image_tag @image.url %>
 
 <div>
-  <%= link_to "Edit image", edit_gallery_image_path(@gallery, @image) %>
- 
-  <%= form_for [@gallery, @image], method: :delete do |form| %>
-    <%= form.submit "Delete" %>
-  <% end %>
+  <% if @gallery.user == current_user %>
+    <%= link_to "Edit image", edit_gallery_image_path(@gallery, @image) %>
 
+    <%= form_for [@gallery, @image], method: :delete do |form| %>
+      <%= form.submit "Delete" %>
+    <% end %>
+  <% end %>
+  
   <ul>
     <% @comments.each do |comment| %>
       <%= render "comments/comment", comment: comment %>
