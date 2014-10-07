@@ -4,6 +4,6 @@ class Comment < ActiveRecord::Base
   validates :body, presence: true
   
   def self.recent
-    order("created_at DESC").limit(5).where("body ILIKE ?", "%recent%").all
+    order("created_at DESC").limit(5)
   end
 end

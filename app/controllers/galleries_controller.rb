@@ -5,8 +5,8 @@
 class GalleriesController < ApplicationController #GalleriesController inherits from ApplicationController
   
   def index 
-    #@galleries = Gallery.all
-    @galleries = current_user.galleries.all
+    @galleries = Gallery.all
+    #@galleries = current_user.galleries.all
     #render :index      #can also leave it out, rails will render it automatically
     
   end
@@ -41,7 +41,9 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
   end
 
   def show
+    #@galleries = Gallery.all
     @gallery = load_gallery_from_url 
+    @user = @gallery.user
     #render :show
   end
 
@@ -76,7 +78,8 @@ class GalleriesController < ApplicationController #GalleriesController inherits 
   end
 
   def load_gallery_from_url
-    current_user.galleries.find(params[:id])
+    Gallery.find(params[:id])
+    #current_user.galleries.find(params[:id])
   end
 end
 

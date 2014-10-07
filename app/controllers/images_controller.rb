@@ -23,12 +23,13 @@ class ImagesController < ApplicationController
   end
 
   def edit
-    @gallery = load_gallery_from_url
+    @gallery = load_gallery_from_current_user
     @image = @gallery.images.find(params[:id])
+    @user = @gallery.user
   end
 
   def update
-    @gallery = load_gallery_from_url
+    @gallery = load_gallery_from_current_user
     @image = @gallery.images.find(params[:id])
     
     if @image.update(image_params)
@@ -39,7 +40,7 @@ class ImagesController < ApplicationController
   end
 
   def destroy
-    @gallery = load_gallery_from_url
+    @gallery = load_gallery_from_current_user
     @image = @gallery.images.find(params[:id])
     @image.destroy
 
@@ -53,6 +54,11 @@ class ImagesController < ApplicationController
   end
 
   def load_gallery_from_url
+    Gallery.find(params[:gallery_id])
+    #current_user.galleries.find(params[:gallery_id])
+  end
+
+  def load_gallery_from_current_user
     current_user.galleries.find(params[:gallery_id])
   end
 
