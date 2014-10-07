@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
 
   resources :galleries do
-    resources :images     #, only: [:show, :new, :create, :edit, :update, :delete]
+    resources :images     #, only: [:show, :new, :create, :edit, :update, :destroy]
   end
 
   resources :images, only: [] do          #comments nested inside image
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :groups, only: [:index, :new, :create, :show] do
-    resources :group_memberships, only: [:create]
+    resources :group_memberships, only: [:create, :destroy]
   end
 end
   # get "/" => "galleries#index"  #when the user goes to /, run galleries#index
