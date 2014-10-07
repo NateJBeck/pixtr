@@ -9,16 +9,17 @@
 <ul>
 <% @gallery.images.each do |image| %> <%#no equals sign for .each %>
   <li>
-  <div> <%= link_to image.name, gallery_image_path(@gallery, image) %> </div>
-        <!-- this is where the DELETE will go -->
-        <div> <%= image_tag image.url %> </div>
+    <div><%= link_to image.name, gallery_image_path(@gallery, image) %> </div>
+    <!-- this is where the DELETE will go -->
+    <div><img id="img1" src="<%= image.url %>"</img></div>
 
-        <% if @gallery.user == current_user %>
-          <%= form_for [@gallery, image], method: :delete do |form| %>
-            <%= form.submit "Delete" %>
-          <% end %>
-        <% end %>
-  </div>
+    <% if @gallery.user == current_user %>
+      <%= form_for [@gallery, image], method: :delete do |form| %>
+        <%= form.submit "Delete" %>
+      <% end %>
+    <% end %>
+
+    </div>
   </li>
 <% end %>
 </ul>
