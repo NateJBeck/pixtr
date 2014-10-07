@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]  #we now have an image_id param to be able to call for every comment
   end
 
-  resources :groups, only: [:index, :new, :create, :show]
+  resources :groups, only: [:index, :new, :create, :show] do
+    resources :group_memberships, only: [:create]
+  end
 end
   # get "/" => "galleries#index"  #when the user goes to /, run galleries#index
   #                               #part before # is name of Controller, after # is name of method after Controller
