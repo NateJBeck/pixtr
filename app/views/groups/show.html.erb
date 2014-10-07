@@ -1,2 +1,9 @@
 <h2>This is the <em><%= @group.name %></em> group</h2>
-<p> <%= @group.description %> </p>
+
+<p>Group Members: </p>
+
+<ul>
+  <% @members.each do |member| %>
+    <li><%= member.email %></li>
+  <% end %>
+</ul>
