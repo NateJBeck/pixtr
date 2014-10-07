@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   root "galleries#index"
- 
+
   resources :users, only: [:new, :create]
-  
+
   resources :galleries do
     resources :images     #, only: [:show, :new, :create, :edit, :update, :delete]
   end
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]  #we now have an image_id param to be able to call for every comment
   end
 
-  resources :groups, only: [:index]
+  resources :groups, only: [:index, :new, :create, :show]
 end
   # get "/" => "galleries#index"  #when the user goes to /, run galleries#index
   #                               #part before # is name of Controller, after # is name of method after Controller
