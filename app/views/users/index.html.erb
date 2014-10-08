@@ -1,0 +1,6 @@
+<h2><u>User's Index</u></h2>
+
+<% @all_users.each do |user| %>
+  <%= link_to user.email, user_path(user)%> joined on <%= user.created_at.strftime("%B") %>
+  <br>
+<% end %>

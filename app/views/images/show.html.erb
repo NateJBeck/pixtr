@@ -8,7 +8,6 @@
 <% end %>
 
 <img class="img2" src="<%= @image.url %>" />
-
 <div>
   <% if current_user.likes?(@image) %>
     <%= button_to "Unlike Image", image_like_path(@image), method: :delete %>
@@ -16,12 +15,16 @@
     <%= button_to "Like Image", image_like_path(@image) %>
   <% end %>
 
-  <ul>
-    <% @comments.each do |comment| %>
-      <%= render "comments/comment", comment: comment %>
-    <% end %>
-  </ul>
-
+  <u><%= @image.likes.count %> likes</u>
+  <br>
+  Who likes this photo?
+  <br>
+  <% @image.likes.each do |like| %>
+    <% user_id = like.user_id %>
+    <% user = User.find(user_id) %>
+    <%= user.email %>
+  <% end %>
+  <p>
   <%= form_for [@image, @comment] do |form| %>
     <%= render "error_messages", target: @comment %>
     <div>
@@ -31,7 +34,10 @@
 
     <%= form.submit %>
   <% end %>
+  <br>
 
+  <% @comments.each do |comment| %>
+    <%= render "comments/comment", comment: comment %>
+  <% end %>
 </div>
-
 
