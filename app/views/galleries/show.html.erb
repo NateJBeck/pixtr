@@ -11,7 +11,7 @@
   <li>
     <div><%= link_to image.name, gallery_image_path(@gallery, image) %> </div>
     <!-- this is where the DELETE will go -->
-    <div><img id="img1" src="<%= image.url %>"</img></div>
+    <div><img class="img1" src="<%= image.url %>"</img></div>
 
     <% if @gallery.user == current_user %>
       <%= form_for [@gallery, image], method: :delete do |form| %>

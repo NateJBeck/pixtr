@@ -2,17 +2,19 @@
 
 <ul>
   <% @galleries.each do |gallery| %>
-    <li>
-    <img id="img2" src="<%= gallery.images.first.url %>" />
-    <%= link_to gallery.name, gallery %> - <%= gallery.description %>
+    <img class="img2" <%= image_tag gallery.images.first.url %>
+    <div class="gallery-wrap">
+      <div class="gallery-list"><%= link_to gallery.name, gallery %></div>
+
     <% if gallery.user == current_user %>
       <%= link_to "Edit", edit_gallery_path(gallery) %>
 
       <%= form_for gallery, method: :delete do |form| %>
         <%= form.submit "Delete" %>
       <% end %>
-
+  
     <% end %>
-    </li>
+  </div>
+  <br>
   <% end %>
 </ul>
