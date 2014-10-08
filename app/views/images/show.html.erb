@@ -10,10 +10,10 @@
 <img class="img2" src="<%= @image.url %>" />
 
 <div>
-  <% if ! current_user.likes?(@image) %>
-    <%= button_to "Like Image", image_like_path(@image) %>
-  <% else %>
+  <% if current_user.likes?(@image) %>
     <%= button_to "Unlike Image", image_like_path(@image), method: :delete %>
+  <% else %>
+    <%= button_to "Like Image", image_like_path(@image) %>
   <% end %>
 
   <ul>
