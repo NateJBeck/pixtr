@@ -1,14 +1,16 @@
-<h1><%= @image.name %></h1>
+<h2><%= @image.name %></h2>
+<% if @gallery.user == current_user %>
+  <%= button_to "Edit image", edit_gallery_image_path(@gallery, @image) %>
+
+  <%= form_for [@gallery, @image], method: :delete do |form| %>
+    <%= form.submit "Delete Image" %>
+  <% end %>
+<% end %>
+
 <%= image_tag @image.url %>
 
 <div>
-  <% if @gallery.user == current_user %>
-    <%= link_to "Edit image", edit_gallery_image_path(@gallery, @image) %>
-
-    <%= form_for [@gallery, @image], method: :delete do |form| %>
-      <%= form.submit "Delete" %>
-    <% end %>
-  <% end %>
+  <%= button_to "Like Image", image_likes_path(@image) %>
   
   <ul>
     <% @comments.each do |comment| %>

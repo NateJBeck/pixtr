@@ -2,7 +2,7 @@
 
 <ul>
   <% @galleries.each do |gallery| %>
-    <img class="img2" <%= image_tag gallery.images.first.url %>
+    <img class="img2" src="<%= gallery.images.first.url %>" />
     <div class="gallery-wrap">
       <div class="gallery-list"><%= link_to gallery.name, gallery %></div>
 
