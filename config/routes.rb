@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :images, only: [] do          #comments nested inside image
     resources :comments, only: [:create]  #we now have an image_id param to be able to call for every comment
     resource :like, only: [:create, :destroy]
+    resource :groupin, only: [:create]
   end
 
   resources :groups, only: [:index, :new, :create, :show] do

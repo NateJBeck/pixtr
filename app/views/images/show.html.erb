@@ -31,10 +31,19 @@
       <%= form.label :body, "Comment" %>
       <%= form.text_area :body %>
     </div>
-
     <%= form.submit %>
   <% end %>
   <br>
+
+  Add this image to which group?
+  <%= form_for @image do |form| %>
+    <%= form.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
+    <%= form.submit %>
+  <% end %>
+
+  <br>
+
+
 
   <% @comments.each do |comment| %>
     <%= render "comments/comment", comment: comment %>
