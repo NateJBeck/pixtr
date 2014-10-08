@@ -17,7 +17,6 @@
     p {
       font-family:georgia; font-size:160%; 
     }
-
     .session {
       float: right;
     }
@@ -30,6 +29,10 @@
       width:250px;
       border:5px solid black;
     }
+    .floaty {
+      float:left;
+      margin:10px;
+    }
     .img2 {
       border:5px solid black;
     }
@@ -38,6 +41,9 @@
       padding: 0px;
       border: 5px solid gray;
       margin: 0px;
+    }
+    .edit-delete-image {
+      display:inline;
     }
     .col3 {
       -webkit-column-gap: 0px;
@@ -57,23 +63,36 @@
     .gallery {
       float:left;
     }
-      span {
+    span {
       color:blue;
       font-size:75%;
+    }
+    .center {
+      text-align:center;
     }
     #group-list {
       color:blue;
       font-size:105%;
+    }
+    .new-gallery {
+      color:black;
+      text-align:center;
+      font-size:200%;
     }
     .gallery-list {
       color:black;
       text-align:center;
       font-size:155%;
     }
-
+    .created-by {
+      color:black;
+      text-align:center;
+      font-size:80%;
+    }
   </style>
 </head>
 <body>
+  <br>
   <header class="session">
 
   <% if signed_in? %>
@@ -87,11 +106,14 @@
   <% end %>
 
   </header>
-
-  <h1><%= link_to "Pixtr", root_path %>
-  <span><img src="http://icons.iconarchive.com/icons/martz90/circle/512/camera-icon.png" height="42" width="42" />
-    for sharing photos
-  </span></h1>
+  <br>
+  <br>
+  <div class="center">
+    <h1><%= link_to "Pixtr", root_path %>
+      <span><img src="http://icons.iconarchive.com/icons/martz90/circle/512/camera-icon.png" height="42" width="42" />
+      for sharing photos
+      </span>
+    </h1>
 
   <% flash.each do |name, msg| %>
     <% if msg.is_a?(String) %>
@@ -100,5 +122,6 @@
   <% end %>
 
   <%= yield %>
+</div>
 </body>
 </html>

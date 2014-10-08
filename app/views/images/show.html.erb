@@ -1,17 +1,21 @@
 <h2><%= @image.name %></h2>
 <% if @gallery.user == current_user %>
-  <%= button_to "Edit image", edit_gallery_image_path(@gallery, @image) %>
+  <%= link_to "Edit image", edit_gallery_image_path(@gallery, @image) %>
 
   <%= form_for [@gallery, @image], method: :delete do |form| %>
     <%= form.submit "Delete Image" %>
   <% end %>
 <% end %>
 
-<%= image_tag @image.url %>
+<img class="img2" src="<%= @image.url %>" />
 
 <div>
-  <%= button_to "Like Image", image_likes_path(@image) %>
-  
+  <% if ! current_user.likes?(@image) %>
+    <%= button_to "Like Image", image_like_path(@image) %>
+  <% else %>
+    <%= button_to "Unlike Image", image_like_path(@image), method: :delete %>
+  <% end %>
+
   <ul>
     <% @comments.each do |comment| %>
       <%= render "comments/comment", comment: comment %>

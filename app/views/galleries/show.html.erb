@@ -4,12 +4,10 @@
   <%= link_to "Add an Image", new_gallery_image_path(@gallery) %>
 <% end %>
 
-<p><%= @gallery.description %></p>
-
 <ul>
 <% @gallery.images.each do |image| %> <%#no equals sign for .each %>
-  <li>
-    <div><%= link_to image.name, gallery_image_path(@gallery, image) %> </div>
+  <div class="floaty">
+    <div class="center"><%= link_to image.name, gallery_image_path(@gallery, image) %>
     <!-- this is where the DELETE will go -->
     <div><img class="img1" src="<%= image.url %>"</img></div>
 
@@ -18,8 +16,9 @@
         <%= form.submit "Delete" %>
       <% end %>
     <% end %>
+  </div>
 
-    </div>
-  </li>
+  </div>
+</div>
 <% end %>
 </ul>

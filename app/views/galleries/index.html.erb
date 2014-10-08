@@ -1,20 +1,29 @@
-<%= link_to "Make a New Gallery", new_gallery_path %> 
+<div class="new-gallery"><%= link_to "Create a New Gallery", new_gallery_path %></div>
 
 <ul>
   <% @galleries.each do |gallery| %>
-    <img class="img2" src="<%= gallery.images.first.url %>" />
-    <div class="gallery-wrap">
-      <div class="gallery-list"><%= link_to gallery.name, gallery %></div>
+    <div class="floaty">
+      <img class="img1" src="<%= gallery.images.first.url %>" />
 
-    <% if gallery.user == current_user %>
-      <%= link_to "Edit", edit_gallery_path(gallery) %>
+      <div class="gallery-wrap">
+        <div class="gallery-list"><%= link_to gallery.name, gallery %></div>
+        <div class="created-by">Created by: 
+          <% if gallery.user == current_user %>
+            <strong>You</strong>
+          <% else %>
+            <%= gallery.user.email %>
+          <% end %>
+        </div>
+      </div>
+      <div class="center">
+      <% if gallery.user == current_user %>
+        <%= link_to "Edit this Gallery", edit_gallery_path(gallery) %>
 
-      <%= form_for gallery, method: :delete do |form| %>
-        <%= form.submit "Delete" %>
+        <%= form_for gallery, method: :delete do |form| %>
+          <%= form.submit "Delete this Gallery" %>
+        <% end %>
       <% end %>
-  
-    <% end %>
-  </div>
-  <br>
+    </div>
+    </div>
   <% end %>
 </ul>
